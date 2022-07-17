@@ -1,6 +1,8 @@
 """to render the html web pages
 """
 from django.http import HttpResponse
+from articles.models import Articles
+from django.template.loader import render_to_string, get_template
 
 
 def home_view(request):
@@ -12,9 +14,12 @@ def home_view(request):
 
     Returns:
         HTML web page: the desired html is returned!
+
     """
-    name = "dariush"
-    html_text = f"""
-    hello {name}
-    """
-    return HttpResponse(html_text)
+    context = {
+        "name": "dariush",
+        "family": "Dehghani"
+    }
+
+    html_STRING = render_to_string("home-view.html", context=context)
+    return HttpResponse(html_STRING)
