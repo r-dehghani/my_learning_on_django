@@ -1,1 +1,2 @@
 pip install Django==4.0.6
+python -m pip install Pillow

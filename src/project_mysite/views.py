@@ -18,7 +18,8 @@ def home_view(request):
     """
     context = {
         "name": "dariush",
-        "family": "Dehghani"
+        "family": "Dehghani",
+        "my_list": range(10),
     }
 
     html_STRING = render_to_string("home-view.html", context=context)

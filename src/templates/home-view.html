@@ -8,4 +8,27 @@
 <p>
     your family is {{family}}
 </p>
+<h2>
+    <ul>
+        {% for item in my_list %}
+
+        {% if item %}
+        <li>{{ item }}</li>
+        {% endif %}
+
+
+        {% endfor %}
+    </ul>
+</h2>
 {% endblock content %}
+
+
+
+{% block detail %}
+{% for item in my_list %}
+<p>
+    <a href="/articles/{{item}}">{{item}}</a>
+</p>
+{% endfor %}
+
+{% endblock detail %}
