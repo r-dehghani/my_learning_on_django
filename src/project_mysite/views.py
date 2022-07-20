@@ -1,7 +1,7 @@
 """to render the html web pages
 """
 from django.http import HttpResponse
-from articles.models import Articles
+from articles.models import Course
 from django.template.loader import render_to_string, get_template
 
 
