@@ -6,7 +6,8 @@
 
 </h1>
 <p>
-    your family is {{family}}
+    your family is {{family}} <br>
+
 </p>
 <h2>
     <ul>
@@ -24,11 +25,11 @@
 
 
 
-{% block detail %}
+{% block course %}
 {% for item in my_list %}
 <p>
-    <a href="/articles/{{item}}">{{item}}</a>
+    <a href="/courses/your_course/{{item}}">{{item}}</a>
 </p>
 {% endfor %}
 
-{% endblock detail %}
+{% endblock course %}
