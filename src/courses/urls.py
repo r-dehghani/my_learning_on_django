@@ -1,7 +1,8 @@
 
 from django.urls import path, include
-from .views import course_view
+from .views import course_view, search_courses_view
 urlpatterns = [
-    path('your_course/<int:id>/', course_view, name='your_course'),
+
+    path('', search_courses_view, name='search_path'),
 
 ]
