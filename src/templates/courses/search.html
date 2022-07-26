@@ -4,9 +4,10 @@
 {% block search %}
 
 {% if course_object %}
-<h1>{{course_object.course_name}}</h1>
-<h2>{{course_object.course_description}}</h2>
-
+<div class="container-fluid">
+    <h1>{{course_object.course_name}}</h1>
+    <h2>{{course_object.course_description}}</h2>
+</div>
 {% endif %}
 
 {% endblock search %}

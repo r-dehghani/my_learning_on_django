@@ -18,13 +18,19 @@ from django.urls import path, include
 from .views import home_view
 from courses.views import course_view
 
+
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name="home_view"),
     path('courses/', include('courses.urls')),
     path('blog/', include('blog.urls')),
 ]
-
+# وقتی که میخاهی یک عکس را در سورس یک تگ ایمیج نمایش بدی این تیکه کد رو اضافه کن در حالت دیباگ !!!
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
 # urlpatterns = [
 #     path('<page_slug>-<page_id>/', include([
 #         path('history/', views.history),

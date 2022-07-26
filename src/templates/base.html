@@ -35,6 +35,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Any Question?</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog_url' %}">Blog</a>
+                </li>
             </ul>
             <nav class="navbar navbar-light" style="background-color: #dbffa200;">
                 <form class="form-inline mr-4">
@@ -44,7 +47,7 @@
                         type="button">Sign up</button>
                 </form>
             </nav>
-            <form class="form-inline my-2 my-lg-0" action="courses/" method="GET">
+            <form class="form-inline my-2 my-lg-0" action="/courses/" method="GET">
                 <input class="form-control mr-sm-2" type="search" name="query_search" placeholder="Search Courses"
                     aria-label="Search">
                 <button class="btn btn-outline-secondary my-2 my-sm-0" style="background-color: #c0e3fa;"
