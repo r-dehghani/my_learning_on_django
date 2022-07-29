@@ -1,6 +1,7 @@
 """to render the html web pages
 """
 from django.http import HttpResponse
+from django.shortcuts import render
 from courses.models import Course
 from django.template.loader import render_to_string, get_template
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
@@ -23,6 +24,4 @@ def home_view(request):
         "family": "Dehghani",
         "my_list": range(10),
     }
-
-    html_STRING = render_to_string("home-view.html", context=context)
-    return HttpResponse(html_STRING)
+    return render(request, 'home-view.html', context=context)

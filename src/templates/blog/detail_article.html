@@ -2,5 +2,19 @@
 
 
 {% block content %}
-
+<div class="container text-center">
+    <!-- TODO: AFTER USING ENCTYPE IN CREATE ARTICLE FORM SRC JUST NEED THE IMAGE URL ATTRIBUTE!!! -->
+    <img src="{{article_image.url}}" alt="">
+    <h1 class="py-4">
+        {{article_title}}
+    </h1>
+    <p>Approximate time for reading : {{article_time_to_read}}</p>
+    <h4 class="lead">
+        {{article_content}}
+    </h4>
+</div>
+<div class="container-fluid text-center">
+    <button type="submit" class="btn btn-light py-2 my-4"><a href="{% url 'blog_url' %}">Go back to the
+            Blog!!</a></button>
+</div>
 {% endblock content %}

@@ -24,8 +24,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name="home_view"),
-    path('courses/', include('courses.urls')),
     path('blog/', include('blog.urls')),
+    path('courses/', include('courses.urls')),
+
 ]
 # وقتی که میخاهی یک عکس را در سورس یک تگ ایمیج نمایش بدی این تیکه کد رو اضافه کن در حالت دیباگ !!!
 if settings.DEBUG:

@@ -4,7 +4,7 @@ from .models import Article
 
 
 class AdminArticle(admin.ModelAdmin):
-    list_display = ["title", "content", "image"]
+    list_display = ["pk", "title", "content", "image"]
     search_fields = ["title", "content"]
 
 
