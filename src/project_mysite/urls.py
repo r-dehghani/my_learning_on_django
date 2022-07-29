@@ -22,8 +22,9 @@ from courses.views import course_view
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', home_view, name="home_view"),
+    path('accounts/', include('accounts.urls')),
+    path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
     path('courses/', include('courses.urls')),
 

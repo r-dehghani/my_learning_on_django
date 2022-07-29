@@ -16,9 +16,18 @@ def course_view(request, id, *args, **kwargs):
         return render(request, "course_view.html", context=context)
 
 
+def courses_view(request):
+    dict_courses = Course.objects.all()
+
+    context = {
+        "course_obj": dict_courses,
+    }
+    return render(request, 'courses/courses_view.html', context=context)
+
+
 def search_courses_view(request):
     query_dict = request.GET
-    # print(query_dict)
+    print(query_dict)
     query = query_dict.get("query_search")
     course_object = None
     if query is not None:

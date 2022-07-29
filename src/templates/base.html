@@ -41,13 +41,19 @@
             </ul>
             <nav class="navbar navbar-light" style="background-color: #dbffa200;">
                 <form class="form-inline mr-4">
-                    <button class="btn mr-1 btn-sm btn-outline-success" style="background-color: #adfdc8be;"
-                        type="button">Login</button>
-                    <button class="btn mr-1 btn-sm btn-outline-secondary" style="background-color: #fdadf6be;"
-                        type="button">Sign up</button>
+                    <a class="btn mr-1 btn-sm btn-outline-success" href="{% url 'login_url' %}" role="button">Login</a>
+                    <!-- <button class="btn mr-1 btn-sm btn-outline-success" style="background-color: #adfdc8be;"
+                        type="button">Login</button> -->
+                    <a class="btn mr-1 btn-sm btn-outline-success" href="{% url 'logout_url' %}"
+                        role="button">Logout</a>
+                    <a class="btn mr-1 btn-sm btn-outline-danger" href="{% url 'register_url' %}"
+                        role="button">Register</a>
+                    <!-- <button class="btn mr-1 btn-sm btn-outline-secondary" style="background-color: #fdadf6be;"
+                        type="button">Sign up</button> -->
                 </form>
             </nav>
-            <form class="form-inline my-2 my-lg-0" action="/courses/" method="GET">
+            <!-- TODO: flow is > method GET and action to courses/search url > call search_view_course > check the input from request > send data to search.html file -->
+            <form class="form-inline my-2 my-lg-0" action=" courses/search/" method="GET">
                 <input class="form-control mr-sm-2" type="search" name="query_search" placeholder="Search Courses"
                     aria-label="Search">
                 <button class="btn btn-outline-secondary my-2 my-sm-0" style="background-color: #c0e3fa;"

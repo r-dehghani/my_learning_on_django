@@ -3,8 +3,8 @@
 {% block content %}
 
 <blockquote class="blockquote text-center">
-    <h2 class="my-3">.:Dear {{name}} Welcome to the <code> Code Bezanim</code>
-        Academy:. </h2>
+    <h2 class="my-3">.: Welcome to the <code> Code Bezanim</code>
+        Academy :. </h2>
     <footer class="blockquote-footer">from <cite title="Source Title">code bezanim team</cite></footer>
 </blockquote>
 
@@ -21,7 +21,7 @@
                             <h1 class="display-3">Hello,</h1>
                             <h4 class="lead">Study whenever you want, from any place in
                                 the world with Online learning and teaching marketplace for programming... </h4>
-                            <p><a class="btn  btn-outline-success btn-lg" href="{% url 'search_courses' %}"
+                            <p><a class="btn  btn-outline-success btn-lg" href="{% url 'courses_view' %}"
                                     role="button">Start Learning
                                     &raquo;</a></p>
                         </div>
@@ -71,6 +71,34 @@
     <div class="container">
 
         <div class="row">
+
+            {% for course_item in course_obj%}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" src="{{course_item.course_image.url}}" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">{{course_item.course_name}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-info">View course</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger">Register course</button>
+                            </div>
+                            <!-- <small class="text-muted">9 mins</small> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</div>
+
+<!--<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
             <div class="col-md-4">
                 <div class="card mb-4 box-shadow">
                     <img class="card-img-top" src="/static/assets/images/home_page_pictures/django.jpg"
@@ -88,8 +116,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
+          <div class="col-md-4"> 
+                 <div class="card mb-4 box-shadow">
                     <img class="card-img-top" src="/static/assets/images/home_page_pictures/flutter.jpg"
                         alt="Card image cap">
                     <div class="card-body">
@@ -174,11 +202,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
-        </div>
-    </div>
+</div>
+</div>
 </div>
 
 {% endblock content %}

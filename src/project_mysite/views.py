@@ -9,19 +9,9 @@ from django.views.decorators.http import require_GET, require_POST, require_http
 
 @require_http_methods(["GET", "POST"])
 def home_view(request):
-    """Take in a request(Django sends the request)
-    return HTML as a response (We pick to return a response!)
+    dict_courses = Course.objects.all()
 
-    Args:
-        request (http request): quest that is sent from the user
-
-    Returns:
-        HTML web page: the desired html is returned!
-
-    """
     context = {
-        "name": "dariush",
-        "family": "Dehghani",
-        "my_list": range(10),
+        "course_obj": dict_courses,
     }
     return render(request, 'home-view.html', context=context)
