@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Article
+from django.contrib.auth.decorators import login_required
 
 
 def detail_article_view(request, num):
@@ -19,6 +20,7 @@ def articles_view(request):
     return render(request, "blog/articles.html", context=context)
 
 
+@login_required
 def create_article_view(request):
     context = {}
     if request.method == "POST":

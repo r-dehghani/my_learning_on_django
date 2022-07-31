@@ -1,1 +1,43 @@
 {% extends 'base.html' %}
+
+{% block content %}
+<!-- <form action="" method="POST">
+    {% csrf_token %}
+    <div class="container">
+        <form class="form-signin text-center">
+            {{form.as_p}}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </form>
+    </div>
+</form> -->
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="container">
+        <form class="form-signin text-center">
+            <div class="text-center py-5">
+                <a class="navbar-brand " href="{% url 'home_view' %}"><code> code bezanim</code></a>
+            </div>
+
+            <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+            <label for="username_" class="sr-only">username</label>
+            <input type="text" name="username" class="form-control" placeholder="username" required autofocus
+                id="username_">
+            <label for="inputPassword1" class="sr-only">Password</label>
+            <input type="password" name="password1" class="form-control" placeholder="Password" required
+                id="inputPassword1">
+            <label for="inputPassword2" class="sr-only">Password</label>
+            <input type="password" name="password2" class="form-control" placeholder="Password" required
+                id="inputPassword2">
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+        </form>
+    </div>
+
+</form>
+{% endblock content %}

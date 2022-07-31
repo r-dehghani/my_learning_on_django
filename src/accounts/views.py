@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 
 
 def login_view(request):
@@ -31,10 +32,17 @@ def logout_view(request):
 
         }
         return render(request, 'accounts/logout.html', context=context)
+    else:
+        return render(request, 'accounts/login.html', context={})
 
 
 def register_view(request):
+    form = UserCreationForm(request.POST or None)
+    print("form user is : ", request.POST)
+    if form.is_valid():
+        user_obj = form.save()
+        return redirect("/accounts/login/")
     context = {
-
+        "form": form,
     }
     return render(request, 'accounts/register.html', context=context)
