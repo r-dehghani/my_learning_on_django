@@ -12,21 +12,21 @@ class MyUser(models.Model):
     about_me = models.TextField(
         verbose_name="a little about about your profile!", max_length=1000)
     profile_pic = models.ImageField(
-        upload_to='./images/profile_pictures',
+        upload_to='static/assets/images/profile_pictures',
         blank=True)
     # ------- Social media accounts! -------
-    telegram = models.URLField(
-        verbose_name="telegram", unique=True, editable=True, max_length=100)
-    github = models.URLField(
-        verbose_name="github", unique=True, editable=True, max_length=100)
-    linkedin = models.URLField(
-        verbose_name="linkedin", unique=True, editable=True, max_length=100)
-    tweeter = models.URLField(
-        verbose_name="tweeter", unique=True, editable=True, max_length=100)
-    instagram = models.URLField(
-        verbose_name="instagram", unique=True, editable=True, max_length=100)
-    personal_website = models.URLField(
-        verbose_name="personal website", unique=True, editable=True, max_length=100)
+    # telegram = models.URLField(
+    #     verbose_name="telegram", unique=True, editable=True, max_length=100)
+    # github = models.URLField(
+    #     verbose_name="github", unique=True, editable=True, max_length=100)
+    # linkedin = models.URLField(
+    #     verbose_name="linkedin", unique=True, editable=True, max_length=100)
+    # tweeter = models.URLField(
+    #     verbose_name="tweeter", unique=True, editable=True, max_length=100)
+    # instagram = models.URLField(
+    #     verbose_name="instagram", unique=True, editable=True, max_length=100)
+    # personal_website = models.URLField(
+    #     verbose_name="personal website", unique=True, editable=True, max_length=100)
 
     def __str__(self):
         return self.user_full_name

@@ -9,7 +9,7 @@ class CourseAdmin(admin.ModelAdmin):
 
 
 class MyUserAdmin(admin.ModelAdmin):
-    list_display = ["user_full_name", "user_email", "telegram"]
+    list_display = ["user_full_name", "user_email"]
 
 
 admin.site.register(Course, CourseAdmin)
