@@ -1,96 +1,103 @@
 {% extends 'base.html' %}
 
-
+{% load bootstrap4 %}
 {% block content %}
-<div class="container-fluid">
-    <!-- TODO: this form is not workingFIXME: -->
-    <!-- 
+<!-- TODO: this form is  working without using django-bootstrap4 package FIXME: -->
+<!-- <div class="container-fluid">
+
+
+    {% if form.errors %}
+    {{form.errors}}
+
+    {% endif %}
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
             <label>Full name</label>
-            <input type="text" class="form-control" name="{{ user_full_name }}">
+            <input type="text" class="form-control" name="user_full_name">
             <small class="form-text text-muted">Please Enter Your Name</small>
+
         </div>
 
         <div class="form-group">
             <label>Your Title</label>
-            <input type="text" class="form-control" name="{{ title }}">
+            <input type="text" class="form-control" name="title">
             <small class="form-text text-muted">Please nter Your Title</small>
         </div>
 
         <div class="form-group">
             <label>Your Location</label>
-            <input type="text" class="form-control" name="{{location}}">
+            <input type="text" class="form-control" name="location">
             <small class="form-text text-muted">Please nter Your Location</small>
         </div>
 
         <div class="form-group">
             <label>Your email</label>
-            <input type="text" class="form-control" name="{{user_email}}">
+            <input type="text" class="form-control" name="user_email">
             <small class="form-text text-muted">Please nter Your email</small>
         </div>
 
         <div class="form-group">
             <label>About ME!</label>
-            <textarea class="form-control" name="{{ about_me }}" rows="9"></textarea>
+            <textarea class="form-control" name="about_me" rows="9"></textarea>
         </div>
 
 
 
         <label class="form-label" for="customFile">Profile Picture</label>
-        <input type="file" name="{{profile_pic}}" class="form-control" id="customFile" /> -->
+        <input type="file" name="profile_pic" class="form-control" id="customFile" />
 
 
 
 
 
-    <!-- <div class="form-group">
+        <div class="form-group">
             <label>Your Telegram</label>
-            <input type="text" class="form-control" name="{{ telegram }}">
+            <input type="text" class="form-control" name="telegram">
             <small class="form-text text-muted">Please nter Your Telegram</small>
         </div>
         <div class="form-group">
             <label>Your Github</label>
-            <input type="text" class="form-control" name="{{github}}">
+            <input type="text" class="form-control" name="github">
             <small class="form-text text-muted">Please nter Your Github</small>
         </div>
         <div class="form-group">
             <label>Your Linkedin</label>
-            <input type="text" class="form-control" name="{{linkedin}}">
+            <input type="text" class="form-control" name="linkedin">
             <small class="form-text text-muted">Please nter Your Linkedin</small>
         </div>
         <div class="form-group">
             <label>Your Tweeter</label>
-            <input type="text" class="form-control" name="{{tweeter}}">
+            <input type="text" class="form-control" name="tweeter">
             <small class="form-text text-muted">Please nter Your Tweeter</small>
         </div>
         <div class="form-group">
             <label>Your Instagram</label>
-            <input type="text" class="form-control" name="{{instagram}}">
+            <input type="text" class="form-control" name="instagram">
             <small class="form-text text-muted">Please nter Your Instagram</small>
         </div>
         <div class="form-group">
             <label>Your Personal Website</label>
-            <input type="text" class="form-control" name="{{personal_website}}">
+            <input type="text" class="form-control" name="personal_website">
             <small class="form-text text-muted">Please nter Your Personal Website</small>
-        </div> -->
+        </div>
 
 
 
 
 
-    <!-- <button type="submit" class="btn btn-primary">Update profile!</button> -->
-    </form>
+        <button type="submit" class="btn btn-primary">Update profile!</button>
+    </form> -->
 </div>
 
 <!-- TODO: this form is working  -->
-<form class="text-center" action="" method="post" enctype="multipart/form-data">
+<form class="form container" action="" method="post" enctype="multipart/form-data">
+    <!-- TODO: to use bootstrapform we should use class="form" within the form tag!!!  -->
     {% csrf_token %}
 
 
 
-    {{ form }}
+    {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">Update profile!</button>
 </form>
 

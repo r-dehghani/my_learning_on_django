@@ -6,11 +6,26 @@ from .models import MyUser
 class MyUserForm(ModelForm):
     class Meta:
         model = MyUser
-        # fields = ["user_full_name", "title", "user_email", "location", "about_me", "profile_pic",
-        #       "telegram", "github", "linkedin", "tweeter", "instagram", "personal_website"]
         fields = '__all__'
 
-# FIXME:
+    def clean(self):
+        data = self.cleaned_data
+        print("cleaned_data is ====> \n", data)
+        title = data.get('title')
+        user_full_name = data.get("user_full_name")
+        qs = MyUser.objects.filter(title__icontains=title)
+        qs1 = MyUser.objects.filter(user_full_name__icontains=user_full_name)
+        if qs.exists():
+            print("####### ######## The user Exists!!!######### #######")
+
+            self.add_error(
+                "title", f"error!!! the {title} is already exists!!!")
+
+        if qs1.exists():
+            self.add_error("user_full_name", 'the user name is taken!!')
+        return data
+
+# FIXME: if you don't want all fields to be displayed you can use any field like below. make sure these fields are not reqiured
     # class MyUserForm(forms.Form):
     #     # user_full_name = models.CharField(verbose_name="full name", max_length=100)
     #     # username = forms.CharField(

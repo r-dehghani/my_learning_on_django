@@ -45,15 +45,15 @@ def my_user_view(request):
     if request.method == "POST":
         print("request.post is \n", request.POST)
         print("request.FILES is \n", request.FILES)
-        # TODO: !!!important hint!!! TODO:
+        # TODO: !!!important hint!!!
         # when you work with photo or file you need to call request.FILES
         form = MyUserForm(request.POST, request.FILES)
         if form.is_valid():
-            # user_full_name = form.cleaned_data['user_full_name']
             form.save()
-
+            # context["form"] = MyUserForm()
+        else:
+            print(form.errors)
     context = {
         "form": form,
-        # "user_full_name": form.cleaned_data['user_full_name']
     }
     return render(request, 'courses/my_user_view.html', context=context)
