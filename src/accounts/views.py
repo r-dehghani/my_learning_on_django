@@ -11,30 +11,31 @@ def login_view(request):
     form = LoginForm()
     if request.user.is_authenticated:
         return render(request, "accounts/already_loged_in.html", {})
-    else:
-        if request.method == "POST":
-            email = request.POST.get("email")
-            password = request.POST.get("password")
-            _ = User.objects.filter(email=email).exists()
-            if _:
-                user = authenticate(request, username=User.objects.get(
-                    email=email).username, password=password)
 
-                if user is None:
-                    context = {
-                        "error": "invalid email or password!!!",
-                    }
-                    return render(request, "accounts/login.html", context=context)
-                login(request, user)
-                return redirect("/")
-        context = {
-            "form": form
-        }
-        return render(request, 'accounts/login.html', context=context)
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        # _ = User.objects.filter(email=email).exists()
+        if User.objects.filter(email=email).exists():
+            user = authenticate(request, username=User.objects.get(
+                email=email).username, password=password)
+
+            if user is None:
+                context = {
+                    "error": "invalid email or password!!!",
+                }
+                return render(request, "accounts/login.html", context=context)
+            login(request, user)
+            return redirect("/")
+    context = {
+        "form": form
+    }
+    return render(request, 'accounts/login.html', context=context)
 
 
 # def login_view(request):
-#     form1 = LoginForm()
+#     form = LoginForm()
 #     if request.user.is_authenticated:
 #         return render(request, "accounts/already_loged_in.html", {})
 #     # elif:
@@ -47,21 +48,26 @@ def login_view(request):
 #     if request.method == "POST":
 #         # form = AuthenticationForm(request)
 
-#         form1 = LoginForm(request.POST or None)
+#         form = LoginForm(request.POST or None)
 #         email = request.POST.get('email')
 #         password = request.POST.get('password')
-#         username = User.objects.get(email=email).username
-
+#         print("REQQQQQ POST is : ", request.POST)
 #         print("email is ", email)
-#         print("username  is ", username)
 #         print("password is ", password)
-#         form = AuthenticationForm(
-#             request, data={"username": username, "password": password})
-#         if form.is_valid():
 
-#             user = form.get_user()
-#             login(request, user)
-#             return redirect('/')
+#         if User.objects.filter(email=email).exists():
+#             username = User.objects.filter(email=email)
+#             print("1")
+#             form = LoginForm(request.POST)
+#             if form.is_valid():
+#                 print("2")
+#                 login(request, )
+#             if user is None:
+#                 context = {
+#                     "error": "invalid email or password!!!", }
+#                 return render(request, "accounts/login.html", context=context)
+#                 login(request, user)
+#                 return redirect('/')
 
 #             # user = authenticate(request, username=User.objects.get(
 #             #     email=email).username, password=password)
@@ -72,7 +78,9 @@ def login_view(request):
 #             #     return render(request, "accounts/login.html", context=context)
 #             # login(request, user)
 #             # return redirect("/")
-#     context = {"form": form1}
+#         # else:
+#         #     print(form.errors)
+#     context = {"form": form}
 #     return render(request, 'accounts/login.html', context=context)
 
 

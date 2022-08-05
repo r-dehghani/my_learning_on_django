@@ -5,7 +5,7 @@
 <!-- <form action="" method="POST">
     {% csrf_token %}
 
-    
+    {{ form.errors }}
 
     <div class="container">
         <form class="form-signin text-center">
@@ -27,11 +27,13 @@
 <!-- TODO: to use bootstrapform we should use class="form" within the form tag!!!  -->
 <form class="form container" action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {% if form.errors %}
-    <p>{{form.email.errors}}</p>
-    <!-- <label for="username_">{{form.email.errors}}</label> -->
-    <!-- <h1 class="h3 mb-3 text-center py-4 font-weight-normal">{{form.errors}}</h1> -->
-    {% endif %}
+
+    <!-- {% if form.errors %} -->
+    {{ error }}
+    <!-- {% endif %} -->
+
+
+
 
     {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">Login</button>

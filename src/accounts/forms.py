@@ -4,6 +4,8 @@ from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
+from django.core import validators
+from django.contrib.auth.password_validation import validate_password
 
 
 class ProfileForm(ModelForm):
@@ -99,11 +101,13 @@ class ProfileForm(ModelForm):
 #         qs = User.objects.filter(email__icontains=email)
 #         if not qs.exists():
 #             self.add_error(
-#                 "Email", "this Email is not valid! Do you register ???")
+#                 "email", "this Email is not valid! Do you register ???")
 
 
 class LoginForm(ModelForm):
-    # email = forms.EmailField()
+    email = forms.EmailField()
+    password = forms.CharField(
+        widget=forms.PasswordInput(), validators=[validate_password])
 
     class Meta:
         model = User
@@ -112,11 +116,14 @@ class LoginForm(ModelForm):
     def clean(self):
         data = self.cleaned_data
         email = data.get("email")
-
+        password = data.get("password")
         qs = User.objects.filter(email__icontains=email)
+        # qs1 = User.objects.filter(password__icontains=password)
         if not qs.exists():
             self.add_error(
-                "Email", "this Email is not valid! Do you register ???")
+                "email", "this Email is not valid! Do you register ???")
+        # if not qs1.is_authenticated:
+        #     self.add_error("password", "wrong password")
 
 
 class Register_form(UserCreationForm):
