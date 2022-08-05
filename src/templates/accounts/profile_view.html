@@ -94,9 +94,6 @@
 <form class="form container" action="" method="post" enctype="multipart/form-data">
     <!-- TODO: to use bootstrapform we should use class="form" within the form tag!!!  -->
     {% csrf_token %}
-
-
-
     {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">Update profile!</button>
 </form>

@@ -1,40 +1,10 @@
 from django.db import models
-
+from accounts.models import Profile
 # Create your models here.
 
 
-class MyUser(models.Model):
-    user_full_name = models.CharField(verbose_name="full name", max_length=100)
-    title = models.CharField(max_length=256)
-    user_email = models.EmailField(verbose_name="email address",
-                                   editable=True, max_length=254, unique=True, blank=True)
-    location = models.CharField(
-        verbose_name="address", max_length=100, blank=True)
-    about_me = models.TextField(
-        verbose_name="a little about about your profile!", max_length=1000, blank=True)
-    profile_pic = models.ImageField(
-        upload_to='static/assets/images/profile_pictures',
-        blank=True)
-    # ------- Social media accounts! -------
-    telegram = models.URLField(
-        verbose_name="telegram", unique=True, editable=True, max_length=100, blank=True)
-    github = models.URLField(
-        verbose_name="github", unique=True, editable=True, max_length=100, blank=True)
-    linkedin = models.URLField(
-        verbose_name="linkedin", unique=True, editable=True, max_length=100, blank=True)
-    tweeter = models.URLField(
-        verbose_name="tweeter", unique=True, editable=True, max_length=100, blank=True)
-    instagram = models.URLField(
-        verbose_name="instagram", unique=True, editable=True, max_length=100, blank=True)
-    personal_website = models.URLField(
-        verbose_name="personal website", unique=True, editable=True, max_length=100, blank=True)
-
-    def __str__(self):
-        return self.user_full_name
-
-
 class Course(models.Model):  # Hint: evry single model in Django inherite from models.Model!!
-    students = models.ManyToManyField(MyUser)
+    students = models.ManyToManyField(Profile)
     course_name = models.CharField(max_length=256, unique=True, blank=False)
     course_description = models.TextField(
         verbose_name="Description about course!")

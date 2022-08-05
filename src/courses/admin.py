@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, MyUser
+from .models import Course
 # Register your models here.
 
 
@@ -8,9 +8,4 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = ["course_name", "course_description"]
 
 
-class MyUserAdmin(admin.ModelAdmin):
-    list_display = ["user_full_name", "user_email"]
-
-
 admin.site.register(Course, CourseAdmin)
-admin.site.register(MyUser, MyUserAdmin)
