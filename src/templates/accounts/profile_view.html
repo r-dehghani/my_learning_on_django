@@ -96,9 +96,12 @@
 <!-- TODO: this form is working  -->
 <!-- TODO: to use bootstrapform we should use class="form" within the form tag!!!  -->
 <form class="form container" action="" method="post" enctype="multipart/form-data">
-    <h2>hello {{user.username}}</h2>
-
     {% csrf_token %}
+    <h2 class="text-center py-2">hello {{user.username}} ! </h2>
+    <div class="text-center">
+        <img src="{{user.profile.profile_pic.url}}" alt="profile picture" class="img-thumbnail ">
+    </div>
+
     {% bootstrap_form u_form %}
     {% bootstrap_form p_form %}
     <button type="submit" class="btn btn-primary">Update profile!</button>

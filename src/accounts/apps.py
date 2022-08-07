@@ -6,10 +6,5 @@ class AccountsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'accounts'
 
-
-# class ProfilesConfig(AppConfig):
-#     name = 'cmdbox.profiles'
-#     verbose_name = _('profiles')
-
-#     def ready(self):
-#         import cmdbox.profiles.signals  # noqa
+    def ready(self):
+        import accounts.signals  # noqa
