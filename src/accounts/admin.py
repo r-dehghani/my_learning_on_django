@@ -10,7 +10,7 @@ from .models import Profile
 
 
 class MyUserAdmin(admin.ModelAdmin):
-    list_display = ["user_full_name", "user_email"]
+    list_display = ["user"]
 
 
 admin.site.register(Profile, MyUserAdmin)

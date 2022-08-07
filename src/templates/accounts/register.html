@@ -19,50 +19,67 @@
     <div class="container">
 
 
-
-        {% if form.errors %}
+        <!-- {% if form.errors %}
 
         <h1 class="h3 mb-3 text-center py-4 font-weight-normal">{{form.errors}}</h1>
-        {% endif %}
-
-
-
-
-
-
+        {% endif %} -->
 
 
         <form class="form-signin text-center">
             <h1 class="h3 mb-3 text-center py-4 font-weight-normal">Register Now!</h1>
+
+
             <div class="container py-2">
-                <label for="username_">username</label>
-                <input type="text" name="username" class="form-control" placeholder="Username" autofocus required
-                    id="username_">
+                <label for="first_name_">Name</label>
+                <input type="text" name="first_name" class="form-control" placeholder="Name" autofocus required
+                    id="first_name_">
 
                 {% if form.errors %}
-                <!-- <p>{{form.username.errors}}</p> -->
-                <label for="username_">{{form.username.errors}}</label>
-                <!-- <h1 class="h3 mb-3 text-center py-4 font-weight-normal">{{form.errors}}</h1> -->
+                <label for="username_">{{form.name.errors}}</label>
                 {% endif %}
+
+            </div>
+
+
+
+            <div class="container py-2">
+                <label for="username_">username</label>
+                <input type="text" name="username" class="form-control" placeholder="Username" required id="username_">
+
+                {% if form.errors %}
+                <label for="username_">{{form.username.errors}}</label>
+                {% endif %}
+
             </div>
             <div class="container py-2">
                 <label for="email_">email</label>
                 <input type="email" name="email" class="form-control" placeholder="Email" required id="email_">
+
                 {% if form.errors %}
-                <!-- <p>{{form.username.errors}}</p> -->
                 <label for="username_">{{form.email.errors}}</label>
-                <!-- <h1 class="h3 mb-3 text-center py-4 font-weight-normal">{{form.errors}}</h1> -->
                 {% endif %}
+
             </div>
             <div class="container py-2">
                 <label for="inputPassword1">Password</label>
                 <input type="password" name="password1" class="form-control" placeholder="Password" required
                     id="inputPassword1">
+
+                {% if form.errors %}
+                <label for="inputPassword1">{{form.password1.errors}}</label>
+                {% endif %}
+
+
             </div>
             <div class="container py-2">
                 <label for="inputPassword2">Password</label>
-                <input type="password" name="password2" class="form-control" placeholder="Password" required
+                <input type="password" name="password2" class="form-control" placeholder="Confirm Password" required
                     id="inputPassword2">
+
+                {% if form.errors %}
+                <label for="inputPassword2">{{form.password2.errors}}</label>
+                {% endif %}
+
             </div>
             <div class="container py-2">
 

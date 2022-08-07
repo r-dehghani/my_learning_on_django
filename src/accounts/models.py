@@ -6,10 +6,10 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_full_name = models.CharField(verbose_name="full name", max_length=100)
+    # user_full_name = models.CharField(verbose_name="full name", max_length=100)
     title = models.CharField(max_length=256)
-    user_email = models.EmailField(verbose_name="email address",
-                                   editable=True, max_length=254, unique=True, blank=True, null=True)
+    # user_email = models.EmailField(verbose_name="email address",
+    #                                editable=True, max_length=254, unique=True, blank=True, null=True)
     location = models.CharField(
         verbose_name="address", max_length=100, blank=True, null=True)
     about_me = models.TextField(
@@ -32,7 +32,7 @@ class Profile(models.Model):
         verbose_name="personal website", unique=True, editable=True, max_length=100, blank=True, null=True)
     
     def __str__(self):
-        return self.user_full_name
+        return str(self.user.first_name)
 
     # @receiver(post_save, sender=User)
     # def create_user_profile(sender, instance, created, **kwargs):

@@ -3,7 +3,8 @@
 {% load bootstrap4 %}
 {% block content %}
 <!-- TODO: this form is  working without using django-bootstrap4 package FIXME: -->
-<!-- <div class="container-fluid">
+<!-- ========================================================================================== -->
+<!-- <div class="container container-fluid">
 
 
     {% if form.errors %}
@@ -22,19 +23,19 @@
         <div class="form-group">
             <label>Your Title</label>
             <input type="text" class="form-control" name="title">
-            <small class="form-text text-muted">Please nter Your Title</small>
+            <small class="form-text text-muted">Please Enter Your Title</small>
         </div>
 
         <div class="form-group">
             <label>Your Location</label>
             <input type="text" class="form-control" name="location">
-            <small class="form-text text-muted">Please nter Your Location</small>
+            <small class="form-text text-muted">Please Enter Your Location</small>
         </div>
 
         <div class="form-group">
             <label>Your email</label>
             <input type="text" class="form-control" name="user_email">
-            <small class="form-text text-muted">Please nter Your email</small>
+            <small class="form-text text-muted">Please Enter Your email</small>
         </div>
 
         <div class="form-group">
@@ -54,32 +55,32 @@
         <div class="form-group">
             <label>Your Telegram</label>
             <input type="text" class="form-control" name="telegram">
-            <small class="form-text text-muted">Please nter Your Telegram</small>
+            <small class="form-text text-muted">Please Enter Your Telegram</small>
         </div>
         <div class="form-group">
             <label>Your Github</label>
             <input type="text" class="form-control" name="github">
-            <small class="form-text text-muted">Please nter Your Github</small>
+            <small class="form-text text-muted">Please Enter Your Github</small>
         </div>
         <div class="form-group">
             <label>Your Linkedin</label>
             <input type="text" class="form-control" name="linkedin">
-            <small class="form-text text-muted">Please nter Your Linkedin</small>
+            <small class="form-text text-muted">Please Enter Your Linkedin</small>
         </div>
         <div class="form-group">
             <label>Your Tweeter</label>
             <input type="text" class="form-control" name="tweeter">
-            <small class="form-text text-muted">Please nter Your Tweeter</small>
+            <small class="form-text text-muted">Please Enter Your Tweeter</small>
         </div>
         <div class="form-group">
             <label>Your Instagram</label>
             <input type="text" class="form-control" name="instagram">
-            <small class="form-text text-muted">Please nter Your Instagram</small>
+            <small class="form-text text-muted">Please Enter Your Instagram</small>
         </div>
         <div class="form-group">
             <label>Your Personal Website</label>
             <input type="text" class="form-control" name="personal_website">
-            <small class="form-text text-muted">Please nter Your Personal Website</small>
+            <small class="form-text text-muted">Please Enter Your Personal Website</small>
         </div>
 
 
@@ -87,14 +88,19 @@
 
 
         <button type="submit" class="btn btn-primary">Update profile!</button>
-    </form> -->
-</div>
+    </form>
+</div> -->
+<!-- ========================================================================================== -->
+
 
 <!-- TODO: this form is working  -->
+<!-- TODO: to use bootstrapform we should use class="form" within the form tag!!!  -->
 <form class="form container" action="" method="post" enctype="multipart/form-data">
-    <!-- TODO: to use bootstrapform we should use class="form" within the form tag!!!  -->
+    <h2>hello {{user.username}}</h2>
+
     {% csrf_token %}
-    {% bootstrap_form form %}
+    {% bootstrap_form u_form %}
+    {% bootstrap_form p_form %}
     <button type="submit" class="btn btn-primary">Update profile!</button>
 </form>
 

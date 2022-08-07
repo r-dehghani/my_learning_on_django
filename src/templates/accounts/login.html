@@ -28,14 +28,13 @@
 <form class="form container" action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
-    <!-- {% if form.errors %} -->
-    {{ error }}
-    <!-- {% endif %} -->
-
-
 
 
     {% bootstrap_form form %}
+
+
+
+
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
 

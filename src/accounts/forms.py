@@ -8,6 +8,19 @@ from django.core import validators
 from django.contrib.auth.password_validation import validate_password
 
 
+class UserUpdateForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ["first_name", "email"]
+
+
+class ProfileUpdateForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ["title", "location", "about_me", "profile_pic", "telegram",
+                  "github", "linkedin", "tweeter", "instagram", "personal_website"]
+
+
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
@@ -87,51 +100,31 @@ class ProfileForm(ModelForm):
 # FIXME:
 
 
-# class LoginForm(AuthenticationForm):
-#     email = forms.EmailField()
-
-#     class Meta:
-#         model = User
-#         fields = ["email", "password"]
-
-#     def clean(self):
-#         data = self.cleaned_data
-#         email = data.get("email")
-
-#         qs = User.objects.filter(email__icontains=email)
-#         if not qs.exists():
-#             self.add_error(
-#                 "email", "this Email is not valid! Do you register ???")
-
-
-class LoginForm(ModelForm):
-    email = forms.EmailField()
-    password = forms.CharField(
-        widget=forms.PasswordInput(), validators=[validate_password])
+class LoginForm(AuthenticationForm):
+    # email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ["email", "password"]
+        fields = ["username", "password"]
 
     def clean(self):
         data = self.cleaned_data
-        email = data.get("email")
-        password = data.get("password")
+        # email = data.get("email")
+
         qs = User.objects.filter(email__icontains=email)
-        # qs1 = User.objects.filter(password__icontains=password)
         if not qs.exists():
             self.add_error(
                 "email", "this Email is not valid! Do you register ???")
-        # if not qs1.is_authenticated:
-        #     self.add_error("password", "wrong password")
 
 
 class Register_form(UserCreationForm):
+    first_name = forms.CharField(max_length=150)
     email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ["first_name", "username",
+                  "email", "password1", "password2"]
 
     def clean(self):
         data = self.cleaned_data
