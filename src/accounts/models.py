@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from PIL import Image
 
 
 class Profile(models.Model):
@@ -33,14 +34,15 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.user.first_name)
 
-    # @receiver(post_save, sender=User)
-    # def create_user_profile(sender, instance, created, **kwargs):
-    #     if created:
-    #         Profile.objects.create(user=instance)
+    #  برای تغییر سایز عکس ها موقع سیو شدن باید متد سیو را بازنویسی کنیم!
+    def save(self):
+        super().save()
+        img = Image.open(self.profile_pic.path)
 
-    # @receiver(post_save, sender=User)
-    # def save_user_profile(sender, instance, **kwargs):
-    #     instance.profile.save()
+        if img.height > 200 or img.width > 200:
+            output_size = (200, 200)
+            img.thumbnail(output_size)
+            img.save(self.profile_pic.path)
 
 
 class ContactUs(models.Model):

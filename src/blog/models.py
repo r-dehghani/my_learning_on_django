@@ -1,4 +1,5 @@
 from django.db import models
+from PIL import Image
 
 
 class Article(models.Model):
@@ -10,3 +11,17 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self):
+        super().save()
+        img = Image.open(self.image.path)
+
+        if img.height > 348 or img.width > 225:
+            output_size = (348, 225)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
+        elif img.height < 348 or img.width < 225:
+            output_size = (348, 225)
+            img.thumbnail(output_size)
+            img.save(self.image.path)

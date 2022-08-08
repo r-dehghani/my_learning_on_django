@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import Profile
 # Create your models here.
+from PIL import Image
 
 
 class Course(models.Model):  # Hint: evry single model in Django inherite from models.Model!!
@@ -16,3 +17,17 @@ class Course(models.Model):  # Hint: evry single model in Django inherite from m
 
     def __str__(self):
         return self.course_name
+
+    def save(self):
+        super().save()
+        img = Image.open(self.course_image.path)
+
+        if img.height > 348 or img.width > 225:
+            output_size = (348, 225)
+            img.thumbnail(output_size)
+            img.save(self.course_image.path)
+
+        elif img.height < 348 or img.width < 225:
+            output_size = (348, 225)
+            img.thumbnail(output_size)
+            img.save(self.course_image.path)
