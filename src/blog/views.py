@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Article
 from django.contrib.auth.decorators import login_required
+from .forms import CreateArticleForm
 
 
 def detail_article_view(request, num):
@@ -22,23 +23,28 @@ def articles_view(request):
 
 @login_required
 def create_article_view(request):
+    form = CreateArticleForm()
     context = {}
     if request.method == "POST":
-        article_object = Article()
-        dict_request = request.POST
-        article_object.title = dict_request.get("title")
-        article_object.content = dict_request.get("content")
-        article_object.time_to_read = dict_request.get("time_to_read")
-        article_object.image = request.FILES['image']
-        article_object.save()
-
+        form = CreateArticleForm(request.POST, request.FILES)
+        # dict_request = request.POST
+        # form.title = dict_request.get("title")
+        # form.content = dict_request.get("content")
+        # form.time_to_read = dict_request.get("time_to_read")
+        # form.image = request.FILES['image']
+        if form.is_valid():
+            form.save()
+            return redirect('/blog/')
     # if request.method == "POST":
     #     dict_request = request.POST
-    #     article_object = Article.objects.create(
+    #     form = Article.objects.create(
     #         title=dict_request.get("title"), content=dict_request.get("content"),
     #         image=dict_request.get("image"), time_to_read=dict_request.get("time_to_read"))
         context = {
-            "object": article_object,
+            "form": form,
             "created": True,
         }
+    context = {
+        "form": form
+    }
     return render(request, 'blog/create_article.html', context=context)

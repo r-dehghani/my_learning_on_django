@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile
+from .models import Profile, ContactUs
 
 
 # class MyUserAdmin(admin.ModelAdmin):
@@ -14,3 +14,10 @@ class MyUserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Profile, MyUserAdmin)
+
+
+class ContactUsAdmin(admin.ModelAdmin):
+    list_display = ["name", "email", "subject", "message"]
+
+
+admin.site.register(ContactUs, ContactUsAdmin)

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import home_view
+from .views import home_view, contact_us_view
 from courses.views import course_view
 
 from django.conf import settings
@@ -24,15 +24,19 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', home_view, name="home_view"),
     path('accounts/', include('accounts.urls')),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name="admin_url"),
     path('blog/', include('blog.urls')),
     path('courses/', include('courses.urls')),
+    path('contact-us/', contact_us_view, name="contact_us_url"),
 
 ]
 # وقتی که میخاهی یک عکس را در سورس یک تگ ایمیج نمایش بدی این تیکه کد رو اضافه کن در حالت دیباگ !!!
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    # urlpatterns += static(settings.MEDIA_URL,
+    #                       document_root=settings.MEDIA_ROOT)
+
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
 # urlpatterns = [
 #     path('<page_slug>-<page_id>/', include([
 #         path('history/', views.history),

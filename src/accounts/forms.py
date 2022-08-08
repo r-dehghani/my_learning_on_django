@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.core.validators import EmailValidator
-from .models import Profile
+from .models import Profile, ContactUs
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
@@ -140,3 +140,9 @@ class Register_form(UserCreationForm):
         if qs1.exists():
             self.add_error(
                 "email", "this email adrress is taken!!! pick another one!!!")
+
+
+class ContactUsForm(ModelForm):
+    class Meta:
+        model = ContactUs
+        fields = "__all__"

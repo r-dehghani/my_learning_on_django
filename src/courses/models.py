@@ -9,7 +9,7 @@ class Course(models.Model):  # Hint: evry single model in Django inherite from m
     course_description = models.TextField(
         verbose_name="Description about course!")
     course_image = models.ImageField(
-        verbose_name="image of course", upload_to='static/assets/images/course_picture')
+        verbose_name="image of course", upload_to='static/assets/images/course_picture')  # may be i should add media to the uploaded_to!!!
     course_link_to_zoom = models.URLField(
         verbose_name="zoom link", editable=True, max_length=256)
     Course_data = models.DateTimeField()

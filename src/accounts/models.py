@@ -15,7 +15,7 @@ class Profile(models.Model):
     about_me = models.TextField(
         verbose_name="a little about about your profile!", max_length=1000, blank=True, null=True)
     profile_pic = models.ImageField(default='default.png',
-        upload_to='static/assets/images/profile_pictures', blank=True, null=True)
+                                    upload_to='static/assets/images/profile_pictures', blank=True, null=True)
     # ------- Social media accounts! -------
     telegram = models.URLField(
         verbose_name="telegram", unique=True, editable=True, max_length=100, blank=True, null=True)
@@ -29,7 +29,7 @@ class Profile(models.Model):
         verbose_name="instagram", unique=True, editable=True, max_length=100, blank=True, null=True)
     personal_website = models.URLField(
         verbose_name="personal website", unique=True, editable=True, max_length=100, blank=True, null=True)
-    
+
     def __str__(self):
         return str(self.user.first_name)
 
@@ -41,4 +41,10 @@ class Profile(models.Model):
     # @receiver(post_save, sender=User)
     # def save_user_profile(sender, instance, **kwargs):
     #     instance.profile.save()
-        
+
+
+class ContactUs(models.Model):
+    name = models.CharField(max_length=150, blank=False, null=False)
+    email = models.EmailField(blank=False, null=False)
+    subject = models.CharField(max_length=150, blank=False, null=False)
+    message = models.TextField(max_length=500, blank=False, null=False)
