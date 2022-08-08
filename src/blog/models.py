@@ -12,7 +12,7 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self):
+    def save(self):  # برای سیو کردن عکس با تغییر سایز
         super().save()
         img = Image.open(self.image.path)
 
