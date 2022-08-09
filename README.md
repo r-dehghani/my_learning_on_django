@@ -7,3 +7,4 @@ Django Framework is a powerful tool to create and moderate website!
 > - version of conda : 4.13.0
 > - version of pillow : 9.2.0
 > - version of django-ckeditor : 6.4.2
+> - version of django-dotenv : 1.4.2
