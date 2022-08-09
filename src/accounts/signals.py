@@ -10,11 +10,11 @@ from .models import Profile
 
 @receiver(post_save, sender=User)
 # ما میخواهیم هر بار که یوزر ایجاد شد این تابع فراخوانی بشه
-def create_user_profile(sender, instance, created, **kwargs):
+def create_user_profile(sender, instance, created,*args, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
+def save_user_profile(sender, instance, *args, **kwargs):
     instance.profile.save()

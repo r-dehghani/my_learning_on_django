@@ -12,8 +12,8 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self):  # برای سیو کردن عکس با تغییر سایز
-        super().save()
+    def save(self, *args, **kwargs):  # برای سیو کردن عکس با تغییر سایز
+        super().save(*args, **kwargs)
         img = Image.open(self.image.path)
 
         if img.height > 348 or img.width > 225:

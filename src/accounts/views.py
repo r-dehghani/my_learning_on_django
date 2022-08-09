@@ -14,7 +14,7 @@ def register_view(request):
     form = Register_form(request.POST or None)
     print("form user is : ", request.POST)
     if form.is_valid():
-        user_obj = form.save()
+        form.save()
         return redirect("/accounts/login/")
     else:
         print(form.errors)

@@ -15,7 +15,7 @@ class Profile(models.Model):
         verbose_name="address", max_length=100, blank=True, null=True)
     about_me = models.TextField(
         verbose_name="a little about about your profile!", max_length=1000, blank=True, null=True)
-    profile_pic = models.ImageField(default='default.png',
+    profile_pic = models.ImageField(default='static/images/profile_pictures/default.png',
                                     upload_to='static/assets/images/profile_pictures', blank=True, null=True)
     # ------- Social media accounts! -------
     telegram = models.URLField(
@@ -35,8 +35,8 @@ class Profile(models.Model):
         return str(self.user.first_name)
 
     #  برای تغییر سایز عکس ها موقع سیو شدن باید متد سیو را بازنویسی کنیم!
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         img = Image.open(self.profile_pic.path)
 
         if img.height > 200 or img.width > 200:

@@ -18,8 +18,8 @@ class Course(models.Model):  # Hint: evry single model in Django inherite from m
     def __str__(self):
         return self.course_name
 
-    def save(self):
-        super().save()
+    def save(self,*args, **kwargs):
+        super().save(*args, **kwargs)
         img = Image.open(self.course_image.path)
 
         if img.height > 348 or img.width > 225:
