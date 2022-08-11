@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import CreateArticleForm
 
 
-def detail_article_view(request, num):
-    dict_article = Article.objects.get(id=num)
+def detail_article_view(request, slug):
+    dict_article = Article.objects.get(slug=slug)
     context = {
         "article_title": dict_article.title,
         "article_content": dict_article.content,

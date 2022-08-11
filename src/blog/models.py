@@ -1,9 +1,11 @@
 from django.db import models
 from PIL import Image
+from django.utils.text import slugify
 
 
 class Article(models.Model):
     title = models.CharField(max_length=150)
+    slug = models.SlugField(max_length=100, null=True, blank=True)
     content = models.TextField()
     time_to_read = models.CharField(max_length=50)
     image = models.ImageField(
@@ -13,7 +15,12 @@ class Article(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):  # برای سیو کردن عکس با تغییر سایز
+
+        # Article.objects.getattr(id=1)
+        # set something!
         super().save(*args, **kwargs)
+        # obj.save()
+        # do something else
         img = Image.open(self.image.path)
 
         if img.height > 348 or img.width > 225:
