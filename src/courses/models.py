@@ -7,6 +7,7 @@ from PIL import Image
 class Course(models.Model):  # Hint: evry single model in Django inherite from models.Model!!
     students = models.ManyToManyField(Profile)
     course_name = models.CharField(max_length=256, unique=True, blank=False)
+    slug = models.SlugField(max_length=250, null=True, blank=True)
     course_description = models.TextField(
         verbose_name="Description about course!")
     course_image = models.ImageField(
@@ -18,7 +19,7 @@ class Course(models.Model):  # Hint: evry single model in Django inherite from m
     def __str__(self):
         return self.course_name
 
-    def save(self,*args, **kwargs):
+    def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         img = Image.open(self.course_image.path)
 

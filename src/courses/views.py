@@ -3,18 +3,22 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.views.decorators.http import require_http_methods
 from courses.models import Course
 # from .forms import MyUserForm
+from django.utils.text import slugify
 
 
 @require_http_methods(["GET", "POST"])
-def course_view(request, id, *args, **kwargs):
+def course_view(request, slug):
+
+    qs = Course.objects.get(slug=slug)
+    print("qs is ", qs)
     context = {
-        "id": id,
+        "course": qs,
 
     }
-    if id == 0:
-        return HttpResponse(status=403)
-    else:
-        return render(request, "course_view.html", context=context)
+    # if qs.get("id") == 0:
+    #     return HttpResponse(status=403)
+    # else:
+    return render(request, "courses/course_view.html", context=context)
 
 
 def courses_view(request):

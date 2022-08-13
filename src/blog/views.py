@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Article
 from django.contrib.auth.decorators import login_required
 from .forms import CreateArticleForm
+from django.urls import reverse
 
 
 def detail_article_view(request, slug):
@@ -34,7 +35,8 @@ def create_article_view(request):
         # form.image = request.FILES['image']
         if form.is_valid():
             form.save()
-            return redirect('/blog/')
+            # return redirect('/blog/')
+            return redirect(reverse("blog_url"))
     # if request.method == "POST":
     #     dict_request = request.POST
     #     form = Article.objects.create(

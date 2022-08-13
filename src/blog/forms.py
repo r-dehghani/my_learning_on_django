@@ -6,7 +6,7 @@ from .models import Article
 class CreateArticleForm(ModelForm):
     class Meta:
         model = Article
-        fields = "__all__"
+        fields = ["title", "content", "image", "time_to_read"]
     # title = forms.CharField(max_length=150)
     # content = forms.CharField(widget=forms.Textarea)
     # time_to_read = forms.CharField(max_length=50)

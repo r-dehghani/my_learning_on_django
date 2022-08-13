@@ -1,9 +1,42 @@
 {% extends 'base.html' %}
 
 {% block course %}
-<h1></h1>
-this is course view!!!
-the number of link is {{course_id}} <br>
-<!-- visit my <a href="{% url 'your_course'  id=2 %}">website</a> -->
 
-{% endblock course %}
+<div class="container">
+
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-6">
+                <img src="{{ course.course_image.url }}" alt="">
+            </div>
+            <div class="col-6">
+                <h4>Learning {{course.course_name}} with <code>  CodeBezanim.ir</code></h4>
+                <div class="lead">
+                    Concerned about which operating system to work with? Don't worry! We cover how to code python in
+                    Mac, Linux, and Windows! Even better, we specifically cover Linux in details to help you get started
+                    like a pro
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <ul class="nav justify-content-center py-4">
+            <li class="nav-item">
+                <a class="nav-link active btn btn-primary" href="https://www.github.com/r-dehghani">Source Code </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-warning" href="#">Telegram Private Group</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link btn btn-danger  " href="#">Register Now!</a>
+            </li>
+        </ul>
+
+
+    </div>
+
+
+
+    {% endblock course %}
