@@ -2,12 +2,14 @@
 
 
 {% block search %}
-
-{% if course_object %}
+{% for item in course_object %}
+{% if item.course_name %}
 <div class="container-fluid">
-    <h1>{{course_object.course_name}}</h1>
-    <h2>{{course_object.course_description}}</h2>
+    <h1>{{item.course_name}}</h1>
+    <h2>{{item.course_description}}</h2>
 </div>
 {% endif %}
+
+{% endfor %}
 
 {% endblock search %}

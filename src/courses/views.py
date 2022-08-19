@@ -36,7 +36,9 @@ def search_courses_view(request):
     query = query_dict.get("query_search")
     course_object = None
     if query is not None:
-        course_object = Course.objects.get(id=query)
+        course_object = Course.objects.filter(course_name__icontains=query)
+    else:
+        return redirect("/")
     context = {
         "course_object": course_object
     }

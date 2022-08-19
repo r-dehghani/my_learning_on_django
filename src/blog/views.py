@@ -50,3 +50,33 @@ def create_article_view(request):
         "form": form
     }
     return render(request, 'blog/create_article.html', context=context)
+
+
+def search_article_view(request):
+
+    query_dict = Article.objects.all()
+    # print(qs)
+    query = request.GET.get("query_search")
+    # qs = Article.objects.filter(title_icontains=query)
+    article_object = None
+    if query_dict is not None:
+        qs = Article.objects.filter(title__icontains=query)
+        if qs is not None:
+
+            context = {
+                "find": True,
+                "article_object": qs,
+            }
+        return render(request, "blog/search.html", context=context)
+    else:
+        context = {
+            "find": False,
+        }
+        return render(request, "blog/search.html", context=context)
+
+    # return render(request, 'blog/search', context=context)
+
+
+def search_result_view(request):
+    dict_articles = Article.objects.all()
+    context = {"articles": dict_articles}

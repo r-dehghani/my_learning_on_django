@@ -1,20 +1,15 @@
 {% extends 'base.html' %}
 
 
+{% block search %}
+
+
+{% if find %}
 
 
 
-{% load static %}
-{% block content %}
+
 <div class="container pt-4">
-    <!-- <div class="input-group mb-3">
-        <input type="text" class="form-control" name="article_serach" placeholder="article's name?"
-            aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Serach Article!</button>
-        </div>
-
-    </div> -->
 
     <form class="form-inline my-2 my-lg-0" action=" /blog/search/" method="GET">
         <input class="form-control mr-sm-2" type="search" name="query_search" placeholder="Search articles"
@@ -22,7 +17,6 @@
         <button class="btn btn-outline-secondary my-2 my-sm-0" style="background-color: #c0e3fa;"
             type="submit">Search</button>
     </form>
-
     <div class="text-center py-4">
         <a href="{% url 'new_aricle_path' %}" class="btn btn-info" role="button">Wanna Write Something Cool? Create
             Article</a>
@@ -34,7 +28,8 @@
     <div class="container">
 
         <div class="row">
-            {% for item in articles %}
+            {% for item in article_object %}
+            {% if item.title %}
             <div class="col-md-4">
                 <div class="card mb-4 box-shadow">
                     <img class="card-img-top" src="{{ item.image.url }}" alt="Card image cap">
@@ -51,20 +46,15 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
 </div>
+{% endif %}
 
+{% if not find %}
+<p>No result is found!!!</p>
+{% endif %}
 
-<!-- 
-<h1>
-    {{item.title}}
-</h1>
-<p>
-    {{item.content}}
-</p> -->
-
-
-
-{% endblock content %}
+{% endblock search %}
