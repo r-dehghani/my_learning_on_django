@@ -3,7 +3,7 @@ from .models import Article
 from django.contrib.auth.decorators import login_required
 from .forms import CreateArticleForm
 from django.urls import reverse
-
+from django.db.models import Q
 
 def detail_article_view(request, slug):
     dict_article = Article.objects.get(slug=slug)
@@ -60,7 +60,8 @@ def search_article_view(request):
     # qs = Article.objects.filter(title_icontains=query)
     article_object = None
     if query_dict is not None:
-        qs = Article.objects.filter(title__icontains=query)
+        lookup = Q(title__icontains=query) | Q(content__icontains=query)
+        qs = Article.objects.filter(lookup) 
         if qs is not None:
 
             context = {

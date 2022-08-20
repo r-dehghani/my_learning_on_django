@@ -4,7 +4,7 @@ from django.views.decorators.http import require_http_methods
 from courses.models import Course
 # from .forms import MyUserForm
 from django.utils.text import slugify
-
+from django.db.models import Q
 
 @require_http_methods(["GET", "POST"])
 def course_view(request, slug):
@@ -36,7 +36,9 @@ def search_courses_view(request):
     query = query_dict.get("query_search")
     course_object = None
     if query is not None:
-        course_object = Course.objects.filter(course_name__icontains=query)
+
+        lookup = Q(course_name__icontains=query) | Q(course_description__icontains=query)
+        course_object = Course.objects.filter(lookup)
     else:
         return redirect("/")
     context = {
