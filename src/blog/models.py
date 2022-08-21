@@ -1,6 +1,16 @@
 from django.db import models
 from PIL import Image
 from django.utils.text import slugify
+from django.db.models import Q
+
+
+class ArticleManager(models.Manager):
+    def search(self, query=None):
+        if query is None or query == "":
+            return self.get_queryset().none()
+        lookup = Q(title__icontains=query) | Q(content__icontains=query)
+        qs = self.get_queryset().filter(lookup)
+        return qs
 
 
 class Article(models.Model):
@@ -10,6 +20,8 @@ class Article(models.Model):
     time_to_read = models.CharField(max_length=50)
     image = models.ImageField(
         upload_to="static/assets/images/article_pictures/")
+
+    objects = ArticleManager()
 
     def __str__(self):
         return self.title

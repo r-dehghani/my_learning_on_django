@@ -5,6 +5,7 @@ from .forms import CreateArticleForm
 from django.urls import reverse
 from django.db.models import Q
 
+
 def detail_article_view(request, slug):
     dict_article = Article.objects.get(slug=slug)
     context = {
@@ -54,24 +55,24 @@ def create_article_view(request):
 
 def search_article_view(request):
 
-    query_dict = Article.objects.all()
-    # print(qs)
     query = request.GET.get("query_search")
     # qs = Article.objects.filter(title_icontains=query)
-    article_object = None
-    if query_dict is not None:
-        lookup = Q(title__icontains=query) | Q(content__icontains=query)
-        qs = Article.objects.filter(lookup) 
-        if qs is not None:
+    # article_object = None
+    # if query_dict is not None:
+    # lookup = Q(title__icontains=query) | Q(content__icontains=query)
+    # qs = Article.objects.filter(lookup)
+    # here we rewrite the objects of model!!! two upper line also is work!
+    qs = Article.objects.search(query=query)
+    if qs is not None:
 
-            context = {
-                "find": True,
-                "article_object": qs,
-            }
+        context = {
+            "finding": True,
+            "article_object": qs,
+        }
         return render(request, "blog/search.html", context=context)
     else:
         context = {
-            "find": False,
+            "finding": False,
         }
         return render(request, "blog/search.html", context=context)
 
