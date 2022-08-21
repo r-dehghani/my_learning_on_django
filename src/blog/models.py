@@ -2,6 +2,7 @@ from django.db import models
 from PIL import Image
 from django.utils.text import slugify
 from django.db.models import Q
+from django.contrib.auth.models import User
 
 
 class ArticleManager(models.Manager):
@@ -14,6 +15,8 @@ class ArticleManager(models.Manager):
 
 
 class Article(models.Model):
+    auther = models.ForeignKey(
+        User, blank=True, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     slug = models.SlugField(max_length=100, null=True, blank=True)
     content = models.TextField()
