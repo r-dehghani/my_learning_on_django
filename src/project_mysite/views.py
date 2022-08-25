@@ -24,6 +24,9 @@ def contact_us_view(request):
         form = ContactUsForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            # return redirect("/")
     context = {"form": form}
+
+    if request.htmx:
+        return render(request, 'partial/contact-us.html', context=context)
     return render(request, 'contact-us.html', context=context)
