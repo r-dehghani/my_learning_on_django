@@ -12,7 +12,7 @@ def main():
     DOT_ENV_PATH = pathlib.Path() / '.env'
     if DOT_ENV_PATH.exists():
         # this is what we need to include .env file for project
-        dotenv.read_dotenv(str(DOT_ENV_PATH))
+        dotenv.load_dotenv(str(DOT_ENV_PATH))
     else:
         print("*****" * 10)
         print("NO .env file founds, be sure to make it!")

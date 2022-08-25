@@ -8,7 +8,7 @@ from django.views.decorators.http import require_GET, require_POST, require_http
 from accounts.forms import ContactUsForm
 
 
-@require_http_methods(["GET", "POST"])
+# @require_http_methods(["GET", "POST"])
 def home_view(request):
     dict_courses = Course.objects.all()
 
