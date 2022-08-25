@@ -12,14 +12,12 @@ def main():
     DOT_ENV_PATH = pathlib.Path() / '.env'
     if DOT_ENV_PATH.exists():
         # this is what we need to include .env file for project
-        dotenv.load_dotenv(str(DOT_ENV_PATH))
+        dotenv.read_dotenv(str(DOT_ENV_PATH))
     else:
         print("*****" * 10)
         print("NO .env file founds, be sure to make it!")
         print("*****" * 10)
 
-
-        
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project_mysite.settings')
     try:
         from django.core.management import execute_from_command_line

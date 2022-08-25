@@ -32,6 +32,9 @@ class Article(models.Model):
     def get_absulote_url(self):
         return f'/blog/article/{self.slug}'
 
+    def get_absulote_hx_url(self):
+        return f'/blog/article/hx/{self.slug}'
+
     def save(self, *args, **kwargs):  # برای سیو کردن عکس با تغییر سایز
 
         # Article.objects.getattr(id=1)

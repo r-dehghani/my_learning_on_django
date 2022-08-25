@@ -1,20 +1,45 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from .models import Article
 from django.contrib.auth.decorators import login_required
 from .forms import CreateArticleForm
 from django.urls import reverse
 from django.db.models import Q
+from django.http import HttpResponse
+# ===========================================================================
 
 
 def detail_article_view(request, slug):
     dict_article = Article.objects.get(slug=slug)
+    hx_url = reverse("article_hx_path", kwargs={"slug": slug})
+    print(hx_url)
+    context = {
+        # "object": dict_article,
+        # "article_title": dict_article.title,
+        # "article_content": dict_article.content,
+        # "article_image": dict_article.image,
+        # "article_time_to_read": dict_article.time_to_read,
+        "hx_url": hx_url,
+    }
+    return render(request, 'blog/detail_article.html', context=context)
+
+
+def detail_article_hx_view(request, slug):
+    try:
+        dict_article = Article.objects.get(slug=slug)
+    except:
+        dict_article = None
+
+    if dict_article is None:
+        return HttpResponse("there is not any thing!")
     context = {
         "article_title": dict_article.title,
         "article_content": dict_article.content,
         "article_image": dict_article.image,
         "article_time_to_read": dict_article.time_to_read,
     }
-    return render(request, 'blog/detail_article.html', context=context)
+    return render(request, 'partial/detail_article.html', context=context)
+
+# ===========================================================================
 
 
 def articles_view(request):
