@@ -8,3 +8,4 @@ Django Framework is a powerful tool to create and moderate website!
 > - version of pillow : 9.2.0
 > - version of django-ckeditor : 6.4.2
 > - version of django-dotenv : 1.4.2
+> - version of django-htmx : 1.12.1
