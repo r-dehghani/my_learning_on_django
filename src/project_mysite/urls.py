@@ -18,8 +18,8 @@ from django.urls import path, include
 from .views import home_view, contact_us_view
 from courses.views import course_view
 
-from django.conf import settings
 from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('', home_view, name="home_view"),

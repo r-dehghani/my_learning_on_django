@@ -13,12 +13,14 @@
                     <img class="card-img-top" src="{{course_item.course_image.url}}" alt="Card image cap">
                     <div class="card-body">
                         <p class="card-text">{{course_item.course_name}}</p>
+                        <h4 style="display: inline-block ; float: right " class="card-text">$
+                            {{course_item.price|floatformat:0}}</h4>
                         <div class="d-flex justify-content-between align-items-center ">
                             <div class="btn-group  ">
                                 <a href="/courses/{{course_item.slug}}" class="btn btn-sm btn-outline-info">View
                                     course</a>
 
-                                <button type="button" class="btn btn-sm btn-outline-danger">Register course</button>
+                                <button type="button" class="btn btn-sm btn-outline-danger">Add to Card</button>
                             </div>
                             <!-- <small class="text-muted">9 mins</small> -->
                         </div>

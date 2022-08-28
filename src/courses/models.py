@@ -4,8 +4,10 @@ from accounts.models import Profile
 from PIL import Image
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+
+
 class Course(models.Model):  # Hint: evry single model in Django inherite from models.Model!!
-    students = models.ManyToManyField(Profile , null=True, blank=True)
+    students = models.ManyToManyField(Profile, null=True, blank=True)
     course_name = models.CharField(max_length=256, unique=True, blank=False)
     slug = models.SlugField(max_length=250, null=True, blank=True)
     course_description = models.TextField(
@@ -15,6 +17,8 @@ class Course(models.Model):  # Hint: evry single model in Django inherite from m
     course_link_to_zoom = models.URLField(
         verbose_name="zoom link", editable=True, max_length=256)
     Course_data = models.DateTimeField()
+    price = models.FloatField()
+    digital = models.BooleanField(default=True, null=True, blank=True)
 
     def __str__(self):
         return self.course_name
