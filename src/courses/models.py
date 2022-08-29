@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import Profile
+# from accounts.models import Profile
 # Create your models here.
 from PIL import Image
 from django.contrib.auth.models import User
@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 
 
 class Course(models.Model):  # Hint: evry single model in Django inherite from models.Model!!
-    students = models.ManyToManyField(Profile, null=True, blank=True)
+    # students = models.ManyToManyField(Profile, null=True, blank=True)
     course_name = models.CharField(max_length=256, unique=True, blank=False)
     slug = models.SlugField(max_length=250, null=True, blank=True)
     course_description = models.TextField(

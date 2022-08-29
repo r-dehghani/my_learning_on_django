@@ -3,14 +3,14 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from PIL import Image
+from courses.models import Course
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # user_full_name = models.CharField(verbose_name="full name", max_length=100)
     title = models.CharField(max_length=256, blank=True, null=True)
-    # user_email = models.EmailField(verbose_name="email address",
-    #                                editable=True, max_length=254, unique=True, blank=True, null=True)
+    list_of_registered_courses = models.ManyToManyField(
+        Course, null=True, blank=True)
     location = models.CharField(
         verbose_name="address", max_length=100, blank=True, null=True)
     about_me = models.TextField(

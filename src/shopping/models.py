@@ -41,7 +41,7 @@ class OrderItem(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.Course.course_name
+        return self.product.course_name
 
 
 class ShippingAddress(models.Model):
