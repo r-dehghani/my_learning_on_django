@@ -12,13 +12,17 @@ from django.db.models import Q
 def course_view(request, slug):
     qs = Course.objects.get(slug=slug)
     if request.user.is_authenticated:
-        qs_1 = Profile.objects.get(user=request.user)
-        # qs_ = Profile.objects.all()
+
+        qs_1 = Profile.objects.filter(user__id=request.user.id).values()
+        print("qs_1", qs_1)
+
     else:
         qs_1 = "Guest"
+
     print("qs is ", qs)
     print("qs_1", qs_1)
-    print("qs_1.list_of_registered_courses", qs_1.list_of_registered_courses)
+    # print("qs_1.list_of_registered_courses", qs_1[0]["list_of_registered_courses"])
+
     context = {
         "course": qs,
         "qs_1": qs_1,
