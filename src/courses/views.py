@@ -59,3 +59,13 @@ def search_courses_view(request):
         "course_object": course_object
     }
     return render(request, "courses/search.html", context=context)
+
+
+# ============================= test ==========================================
+
+def test_view(request):
+    print(request.COOKIES)
+    resp = HttpResponse("hello this is hhtp response!!!")
+    resp.set_cookie("zap", 42)
+    resp.set_cookie("mizaki", 42, max_age=30)
+    return resp

@@ -10,7 +10,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=256, blank=True, null=True)
     list_of_registered_courses = models.ManyToManyField(
-        Course, null=True, blank=True)
+        Course, blank=True)
     location = models.CharField(
         verbose_name="address", max_length=100, blank=True, null=True)
     about_me = models.TextField(
